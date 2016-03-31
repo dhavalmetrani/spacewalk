@@ -56,15 +56,15 @@ Vagrant.configure(2) do |config|
 
   # Create a 10GB disk and attach it to SATA controller 
   # Create a 20GB disk and attach it to SATA controller
-    # unless File.exist?(file_to_disk_10gb)
-    #   vb.customize ['createhd', '--filename', file_to_disk_10gb, '--size', 10 * 1024]
-    # end
-    # unless File.exist?(file_to_disk_20gb)
-    #   vb.customize ['createhd', '--filename', file_to_disk_20gb, '--size', 20 * 1024]
-    # end
+    unless File.exist?(file_to_disk_10gb)
+      vb.customize ['createhd', '--filename', file_to_disk_10gb, '--size', 10 * 1024]
+    end
+    unless File.exist?(file_to_disk_20gb)
+      vb.customize ['createhd', '--filename', file_to_disk_20gb, '--size', 20 * 1024]
+    end
 
-    # vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_10gb]
-    # vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_20gb]
+    vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_10gb]
+    vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', file_to_disk_20gb]
 
   end
   #
@@ -86,8 +86,8 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
 
-  # config.vm.provision :shell, :path => "new_disk.sh"
-  # config.vm.provision :shell, :path => "bootstrap.sh"
+  config.vm.provision :shell, :path => "new_disk.sh"
+  config.vm.provision :shell, :path => "bootstrap.sh"
 
   # port 80 is privileged port
   # config.vm.network :forwarded_port, guest: 8080, host: 80

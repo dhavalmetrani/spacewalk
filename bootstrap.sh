@@ -56,5 +56,3 @@ EOL
 
 yum clean all && yum repolist
 yum install spacewalk-setup-postgresql spacewalk-postgresql -y
-
-yum install system-config-firewall -y
